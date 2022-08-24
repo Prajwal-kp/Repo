@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+</head>
+
+<body>
+  <h2>Sign Up </h2>
+  <div class="signup">
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          
+          {{field.label_tag}}
+          {{ field }}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+      <button type="submit" class="btn btn-success">Sign up</button> 
+
+    </form>
+    
+    </div>
+    
+
+
+</html>

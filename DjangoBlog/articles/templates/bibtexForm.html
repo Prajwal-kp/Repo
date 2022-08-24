@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block contnet %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+</head>
+
+<body>
+	<div class="bibtex-upload-form">
+		<h1>Choose Bibtex</h1>
+		<form action="{% url 'article:bibtex-upload' %}" method="POST" class="form-site" enctype="multipart/form-data">
+			{%csrf_token%}
+			{{biptex}}
+			<input type="submit" name="bibtexUpload" class="btn btn-secondary" value="Populate">
+		</form>
+	</div>
+
+</body>
+
+</html>
+
+{% endblock %}

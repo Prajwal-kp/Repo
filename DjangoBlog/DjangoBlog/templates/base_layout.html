@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Publication Repository</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div class='dashboard'>
+    <div class='dashboard'>
+      <div class="dashboard-nav">
+        {% if user.is_authenticated %}
+        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a  class="brand-logo">
+          <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+          alt="User-Profile-Image"> <span>{{request.user.username}}</span></a></header>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <nav class="dashboard-nav-list"><a href="{% url 'article:list' %}" class="dashboard-nav-item"><i class="fas fa-home"></i>
+            Home </a>
+          <a href="{% url 'article:profile' %}" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
+          <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                class="fas fa-photo-video"></i> Create Entries </a>
+            <div class='dashboard-nav-dropdown-menu'>
+              <a href="{% url 'article:create' type='general'%}" class="dashboard-nav-dropdown-item">General</a>
+              <a href="{% url 'article:create' type='journal'%}" class="dashboard-nav-dropdown-item">Journal</a>
+              <a href="{% url 'article:create' type='conference'%}" class="dashboard-nav-dropdown-item">Conference</a>
+              <a href="{% url 'article:create' type='Book'%}" class="dashboard-nav-dropdown-item">Book</a>
+              <a href="{% url 'article:bibtex-upload' %}" class="dashboard-nav-dropdown-item">Bibtex</a>
+            </div>
+
+            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+                  class="fas fa-users"></i> Export </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a href="{% url 'article:export-pdf' export_Format='MLA'%}"
+                  class="dashboard-nav-dropdown-item">MLA</a>
+                  <a href="{% url 'article:export-pdf' export_Format='APA'%}"
+                  class="dashboard-nav-dropdown-item">APA</a>
+                  <a href="{% url 'article:export-excel' %}"
+                  class="dashboard-nav-dropdown-item">EXCEL SHEET</a>
+                  <a href="{% url 'article:export-bibtex' %}"
+                  class="dashboard-nav-dropdown-item">BIBTEX</a>
+              </div>
+
+              {% else %}
+              <li><a href="{% url 'accounts:login' %}"><span class="icon-key mr-3"></span>LogIn</a></li>
+              <li><a href="{% url 'accounts:signup' %}"><span class="icon-key mr-3"></span>Sign Up</a></li>
+              {% endif %}
+    
+              <div class="nav-item-divider"></div>
+              
+            </div>
+            {% if user.is_authenticated %}
+            <div style="position: absolute;bottom: 25px; width: 80% ;margin-left:35px;">
+            
+       
+            <form action="{% url 'accounts:logout' %}" method="POST">
+              {%csrf_token%}
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <button type="submit" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>
+               Log Out</buttton>
+            </form>
+         
+        </nav>
+      </div>
+      {% endif %}
+
+
+    </div>
+    <div class='dashboard-app'>
+      <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+      <div class='dashboard-content'>
+        <p>
+          {% block contnet %}
+          
+          {% endblock %}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+  <script src="{% static 'js/base_layout.js' %}"></script>

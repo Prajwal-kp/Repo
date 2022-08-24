@@ -1,0 +1,75 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block contnet %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+
+</head>
+
+<body>
+
+    {%for article in articles%}
+    <div class='article'>
+
+        <h2><a href="{% url 'article:detail' slug=article.slug %}">{{article.title}}</a></h2>
+        <p>{{article.getAuthors}}</p>
+        <p>{{article.journal}} {{article.pages}}</p>
+        <p class="card__apply">
+        <a class="card__link" href="{% url 'article:update_data' type='article' slug=article.slug %}">Update<i class="fas fa-arrow-right"></i></a>
+        <a class="card__link" href="{% url 'article:delete-data' type='article' slug=article.slug %}">Delete<i class="fas fa-times"></i></a>
+        </p>
+    </div>
+    
+    {%endfor%}
+    {%for book in books%}
+    <div class='article'>
+
+        <h2><a href="{% url 'article:detail' slug=book.slug %}">{{book.title}}</a></h2>
+        <p>{{book.getAuthors}}</p>
+        <p> {{book.pages}}</p>
+        <p class="card__apply">
+        <a class="card__link" href="{% url 'article:update_data' type='book' slug=book.slug %}">Update<i class="fas fa-arrow-right"></i></a>
+        <a class="card__link" href="{% url 'article:delete-data' type='book' slug=book.slug %}">Delete<i class="fas fa-times"></i></a>
+        </p>
+    </div>
+    {%endfor%}
+
+    {%for article in conference_article %}
+    <div class='article'>
+
+        <h2><a href="{% url 'article:detail' slug=article.slug %}">{{article.title}}</a></h2>
+        <p style="overflow: hidden;">{{article.getAuthors}}</p>
+        <p>{{article.conference_name}}, {{article.pages}}</p>
+        <p class="card__apply">
+        <a class="card__link" href="{% url 'article:update_data' type='conference' slug=article.slug %}">Update<i class="fas fa-arrow-right"></i></a>
+        <a class="card__link" href="{% url 'article:delete-data' type='conference' slug=article.slug %}">Delete<i class="fas fa-times"></i></a>
+    </p>
+    </div>
+    {%endfor%}
+    {%for article in general_articles %}
+    <div class='article'>
+
+        <h2><a href="{% url 'article:detail' slug=article.slug %}">{{article.title}}</a></h2>
+        <p style="overflow: hidden;">{{article.getAuthors}}</p>
+        <p>{{article.conference_name}}, {{article.pages}}</p>
+        <p class="card__apply">
+        <a class="card__link" href="{% url 'article:update_data' type='general' slug=article.slug %}">Update<i class="fas fa-arrow-right"></i></a>
+        <a class="card__link" href="{% url 'article:delete-data' type='general' slug=article.slug %}">Delete<i class="fas fa-times"></i></a>
+    </p>
+    </div>
+    {%endfor%}
+
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}
