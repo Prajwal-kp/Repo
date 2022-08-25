@@ -47,7 +47,7 @@ class Article(models.Model): #this is like a table with fields
     #auto add slug before save
     def save(self, *args, **kwargs):
         if not self.slug:
-            temp = str(self.title) + str(self.version)
+            temp = str(self.title)+ str(self.author) + str(self.version)
             self.slug = slugify(temp)
         super(Article, self).save(*args, **kwargs)
 
@@ -125,7 +125,7 @@ class Book(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            temp = str(self.title)+str(self.version)
+            temp = str(self.title)+ str(self.author)+str(self.version)
             self.slug = slugify(temp)
         super(Book, self).save(*args, **kwargs)
 
@@ -199,7 +199,7 @@ class ConferenceArticle(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            temp = str(self.title) + str(self.version)
+            temp = str(self.title)+ str(self.author) + str(self.version)
             self.slug = slugify(temp)
         super(ConferenceArticle, self).save(*args, **kwargs)
 
@@ -274,7 +274,7 @@ class GeneralArticle(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            temp = str(self.title) + str(self.version)
+            temp = str(self.title) + str(self.author)+ str(self.version)
             self.slug = slugify(temp)
         super(GeneralArticle, self).save(*args, **kwargs)
 

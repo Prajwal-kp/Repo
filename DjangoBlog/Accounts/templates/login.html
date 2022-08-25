@@ -14,7 +14,7 @@
         <div class="form-container sign-up-container">
             <form method="post">
       {% csrf_token %}
-      {% for field in form %}
+      {% for field in form.visible_fields %}
         <p>
           {{ field.label_tag }}<br>
           {{ field }}
@@ -44,13 +44,16 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
+                   
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
+                    <h1>Welcome</h1>
+                    <p>Academician</p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <a href="{% url 'accounts:signup' %}"><button type="submit" class="btn btn-success">Sign Up</button></a>
                 </div>
             </div>

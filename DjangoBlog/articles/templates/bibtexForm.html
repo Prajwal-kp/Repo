@@ -15,7 +15,7 @@
 
 <body>
 	<div class="bibtex-upload-form">
-		<h1>Choose Bibtex</h1>
+		<p>Choose Bibtex</p>
 		<form action="{% url 'article:bibtex-upload' %}" method="POST" class="form-site" enctype="multipart/form-data">
 			{%csrf_token%}
 			{{biptex}}
